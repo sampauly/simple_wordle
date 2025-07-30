@@ -17,15 +17,18 @@ class Wordle:
         self.counts_initialized = False                      # set to True once target word has been counted 
 
     def is_won(self):
-        # true if user has won. checks if every 
-        return all(color == "green" for (_, color) in self.checked_user_input)
-
-    def is_lost(self):
-        # returns true if user is out of attempts
-        if self.attempts > self.max_attempts:
-            return True
+        """ true if user has won. checks if a valid guess has been made, then checks if all colors are green for that guess """
+        if self.checked_user_input:
+            return all(color == "green" for (_, color) in self.checked_user_input) 
         else: 
             return False
+
+    def is_lost(self):
+        """ returns true if user is out of attempts """
+        if self.attempts < self.max_attempts:
+            return False
+        else: 
+            return True
         
     def get_target_counts(self):
         """ counts number of occurences of each letter """
@@ -38,57 +41,47 @@ class Wordle:
         self.counts_initialized = True
 
     def is_valid(self, user_input):
-        """
-        checks that users input is valid and hasnt been guessed already 
-            if valid -> attempt used, return True
-            if not valid -> try again, return False
-        """
-        if user_input in self.word_bank and user_input not in self.guesses:
-            self.attempts += 1  # mark an attempt
-            return True
-        else:
-            return False
+        """ returns True if users input is a valid 5 letter word """
+        return user_input in self.word_bank and len(user_input) == 5
+        
+    def is_unique(self, user_input):
+        """ returns true if user input a new guess """
+        return user_input not in self.guesses
 
     def check_word(self, user_input):
         """
-            Goal:
-            * if character is not in the word, its gray 
-            * if character is in word, but out of place, its yellow
-            * if character is in its correct spot in the word, its green
-
-            Calls:
-            * is_valid to check if user input is in the word bank
-            * get_target_counts to count the occurences of each letter in the target word, necessary for assigning colors 
-
-            Takes: 5 letter word provided by user
-            Returns: list holding tuples (char, color) for complete word 
+            What it does:
+            1. clears prior guesses checked_user_input
+            3. checks if target has been counted yet, and counts char occurences if needed
+            4. assigns green, yellow, or gray to chars based on their level of correctness 
+            5. adds the users guess to a list 
+            6. returns the checked word as a tuple of (char, color)
         """
         self.checked_user_input = [] # reset checked user input 
         user_input = user_input.lower()
 
-        # call is_valid to check if attempt is valid 
-        if self.is_valid(user_input):
+        # call get_target_counts once
+        if self.counts_initialized == False:
+            self.get_target_counts()
 
-            # call get_target_counts once
-            if self.counts_initialized == False:
-                self.get_target_counts()
+        # make a copy of target_counts, essentially resetting the counts each time a new check is called 
+        temp_target_counts = self.target_counts.copy()
 
-            # mark greens, yellows, and grays using a loop 
-            for i in range(0,5):
-                if user_input[i] == self.target[i]:
-                    self.checked_user_input.append((user_input[i], "green"))
-                    self.target_counts[user_input[i]] -= 1
-                elif user_input[i] not in self.target or self.target_counts[user_input[i]] < 1:
-                    self.checked_user_input.append((user_input[i], "gray"))
-                else:
-                    self.checked_user_input.append((user_input[i], "yellow"))
-                    self.target_counts[user_input[i]] -= 1 
+        # mark greens, yellows, and grays using a loop 
+        for i in range(0,5):
+            if user_input[i] == self.target[i]:
+                self.checked_user_input.append((user_input[i], "green"))
+                temp_target_counts[user_input[i]] -= 1
+            elif user_input[i] not in self.target or temp_target_counts[user_input[i]] < 1:
+                self.checked_user_input.append((user_input[i], "gray"))
+            else:
+                self.checked_user_input.append((user_input[i], "yellow"))
+                temp_target_counts[user_input[i]] -= 1 
 
-            # add guess to list
-            self.guesses.append(user_input)
+        # add guess to list
+        self.guesses.append(user_input)
 
-        else:
-            # word is not valid 
-            print(f"Sorry, {user_input} is an invalid word, try again.")
+        # increment attempts
+        self.attempts += 1 
 
         return self.checked_user_input
