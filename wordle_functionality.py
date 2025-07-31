@@ -1,3 +1,5 @@
+""" defines Wordle class containing functionality for game instances """
+
 import random
 
 def load_word_bank(filename):
