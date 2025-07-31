@@ -177,7 +177,9 @@ class WordleGUI:
                 bg=self.colors[color],
                 fg="white" if color != "empty" else self.colors["text"]
             )
-        
+
+        self.root.update_idletasks()
+            
         # check win condition
         if self.game.is_won():
             self.show_end_game_dialog("Congratulations!", 
@@ -193,6 +195,7 @@ class WordleGUI:
         if self.game.is_lost():
             self.show_end_game_dialog("Game Over", 
                                     f"You ran out of attempts.\nThe word was: {self.game.target.upper()}")
+            
     
     def show_end_game_dialog(self, title, message):
         result = messagebox.askyesno(title, f"{message}\n\nWould you like to play again?")

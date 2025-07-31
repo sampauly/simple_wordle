@@ -21,7 +21,7 @@ class Wordle:
     def is_won(self):
         """ true if user has won. checks if a valid guess has been made, then checks if all colors are green for that guess """
         if self.checked_user_input:
-            return all(color == "green" for (_, color) in self.checked_user_input) 
+            return self.checked_user_input and all(color == "green" for (_, color) in self.checked_user_input) 
         else: 
             return False
 
@@ -60,6 +60,7 @@ class Wordle:
             6. returns the checked word as a tuple of (char, color)
         """
         self.checked_user_input = [] # reset checked user input 
+        result = [("", "gray")] * 5 # will hold the checked user input 
         user_input = user_input.lower()
 
         # call get_target_counts once
@@ -69,16 +70,25 @@ class Wordle:
         # make a copy of target_counts, essentially resetting the counts each time a new check is called 
         temp_target_counts = self.target_counts.copy()
 
-        # mark greens, yellows, and grays using a loop 
+        # mark greens 
+        ## DONT USE APPEND FOR ADDING TO CHECKED INPUT 
         for i in range(0,5):
             if user_input[i] == self.target[i]:
-                self.checked_user_input.append((user_input[i], "green"))
+                result[i] = ((user_input[i], "green"))
                 temp_target_counts[user_input[i]] -= 1
-            elif user_input[i] not in self.target or temp_target_counts[user_input[i]] < 1:
-                self.checked_user_input.append((user_input[i], "gray"))
-            else:
-                self.checked_user_input.append((user_input[i], "yellow"))
-                temp_target_counts[user_input[i]] -= 1 
+
+        # mark ywllows and grays 
+        for i in range(0,5):
+            if result[i][1] == "gray":
+
+                # if letter not in target, or occurs no more in the target, assign gray 
+                if user_input[i] not in self.target or temp_target_counts[user_input[i]] < 1:
+                    result[i] = (user_input[i], "gray")
+
+                # letter must still be in target 
+                else:
+                    result[i] = (user_input[i], "yellow")
+                    temp_target_counts[user_input[i]] -= 1 
 
         # add guess to list
         self.guesses.append(user_input)
@@ -86,4 +96,7 @@ class Wordle:
         # increment attempts
         self.attempts += 1 
 
-        return self.checked_user_input
+        # set checked_user_input to result
+        self.checked_user_input = result
+
+        return result
