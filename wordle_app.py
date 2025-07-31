@@ -10,7 +10,7 @@ class WordleGUI:
         self.root.configure(bg="#121213") # set background color 
         self.root.resizable(False, False)
         
-        # load word bank and initialize game
+        # try load word bank function and initialize game
         try:
             self.word_bank = load_word_bank(word_bank_file)
             self.game = Wordle(self.word_bank)
@@ -18,12 +18,12 @@ class WordleGUI:
             messagebox.showerror("Error", f"Could not find {word_bank_file}")
             return
         
-        # initial game state
+        # initial game state (starts top left corner)
         self.current_row = 0
         self.current_col = 0
         self.current_guess = ""
         
-        # set colors 
+        # set color scheme
         self.colors = {
             "green": "#6aaa64",
             "yellow": "#c9b458", 
@@ -33,13 +33,17 @@ class WordleGUI:
             "text": "#ffffff"
         }
         
+        # call set up UI method
         self.setup_ui()
+
+        # binds key press to the on_key_press function
         self.root.bind('<KeyPress>', self.on_key_press)
+
         self.root.focus_set()
         
     def setup_ui(self):
-        """ sets UI display """
-        # set up title 
+        """ configures UI display """
+        # configure titel label
         title_label = tk.Label(
             self.root, 
             text="WORDLE", 
@@ -75,7 +79,7 @@ class WordleGUI:
                 grid_row.append(cell)
             self.grid.append(grid_row)
         
-        # input frame
+        # input frame 
         input_frame = tk.Frame(self.root, bg="#121213")
         input_frame.pack(pady=20)
         
@@ -98,44 +102,19 @@ class WordleGUI:
             height=2
         )
         self.current_guess_label.pack()
-        
-        # submit button
-        self.submit_btn = tk.Button(
-            input_frame,
-            text="SUBMIT GUESS",
-            font=("Arial", 12, "bold"),
-            bg="#6aaa64",
-            fg="white",
-            width=15,
-            height=2,
-            command=self.submit_guess,
-            relief="flat"
-        )
-        self.submit_btn.pack(pady=10)
-        
+
         # instructions
         instructions = tk.Label(
             self.root,
             text="Type letters and press ENTER to submit\nBACKSPACE to delete",
-            font=("Arial", 10),
+            font=("Arial", 14),
             fg="#787c7e",
             bg="#121213"
         )
-        instructions.pack(pady=10)
-        
-        # new game button
-        self.new_game_btn = tk.Button(
-            self.root,
-            text="NEW GAME",
-            font=("Arial", 10),
-            bg="#787c7e",
-            fg="white",
-            command=self.new_game,
-            relief="flat"
-        )
-        self.new_game_btn.pack(pady=5)
+        instructions.pack(pady=20)
         
     def on_key_press(self, event):
+        """ handles keyboard input """
         key = event.keysym.lower()
         
         if key == 'return':
@@ -147,7 +126,9 @@ class WordleGUI:
     
 
     def add_letter(self, letter):
+        """ builds current guess string """
         if len(self.current_guess) < 5 and self.current_row < 6:
+            # add letter to current guess
             self.current_guess += letter
             self.grid[self.current_row][len(self.current_guess)-1].config(
                 text=letter,
@@ -169,6 +150,7 @@ class WordleGUI:
         self.current_guess_label.config(text=self.current_guess)
     
     def submit_guess(self):
+        """ submits guess to game. checks validity and uniqueness before checking word """
         if len(self.current_guess) != 5:
             messagebox.showwarning("Invalid Guess", "Please enter a 5-letter word.")
             return
@@ -220,7 +202,7 @@ class WordleGUI:
             self.root.quit()
     
     def new_game(self):
-        # reset game
+        """ resets game """
         self.game = Wordle(self.word_bank)
         self.current_row = 0
         self.current_col = 0

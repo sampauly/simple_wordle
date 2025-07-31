@@ -16,7 +16,7 @@ class Wordle:
         self.attempts = 0                                   # current number of attempts
         self.checked_user_input = []                        # populate with result of word check (greens, yellows, grays)
         self.target_counts = {}                             # empty dict, holds num of occurences for each letter in target 
-        self.counts_initialized = False                      # set to True once target word has been counted 
+        self.counts_initialized = False                     # set to True once target word has been counted 
 
     def is_won(self):
         """ true if user has won. checks if a valid guess has been made, then checks if all colors are green for that guess """
