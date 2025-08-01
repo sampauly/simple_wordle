@@ -1,3 +1,5 @@
+""" builds and configures Tkinter GUI """
+
 import tkinter as tk
 from tkinter import messagebox
 from wordle_functionality import Wordle, load_word_bank
