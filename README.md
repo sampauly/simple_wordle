@@ -20,7 +20,8 @@ This project uses only Python’s standard library modules:
 
 1. Clone the repository 
 ```bash
-https://github.com/sampauly/simple_wordle.git
+git clone https://github.com/sampauly/simple_wordle.git
+cd simple_wordle
 ```
 2. Ensure you’re using **Python 3**
 3. Launch the game from your terminal:
