@@ -1,7 +1,6 @@
 # Simple Wordle 
 
-<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 05 02 AM" src="https://github.com/user-attachments/assets/9140ccb8-f026-4722-b07d-4b18196fa71e" />
-<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 05 45 AM" src="https://github.com/user-attachments/assets/37a4e4c8-7b00-40ca-8db6-3cade37bd481" />
+<img width="318" height="500" alt="Screenshot 2025-09-04 at 5 01 58 AM" src="https://github.com/user-attachments/assets/b5672ecd-76ac-4062-9812-a7fbfb2d8ec5" /> 
 
 A simple desktop Wordle clone built using Python and Tkinter.
 
@@ -33,7 +32,10 @@ python3 wordle_app.py
 ```
 
 ## More Images 
-<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 01 58 AM" src="https://github.com/user-attachments/assets/b5672ecd-76ac-4062-9812-a7fbfb2d8ec5" /> 
+
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 05 02 AM" src="https://github.com/user-attachments/assets/9140ccb8-f026-4722-b07d-4b18196fa71e" />
+
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 05 45 AM" src="https://github.com/user-attachments/assets/37a4e4c8-7b00-40ca-8db6-3cade37bd481" />
 
 <img width="303" height="470" alt="Screenshot 2025-09-04 at 5 22 21 AM" src="https://github.com/user-attachments/assets/32f864a3-a4cb-4d83-9528-7bf2070706f4" />
 
