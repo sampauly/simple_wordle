@@ -39,6 +39,7 @@ python3 wordle_app.py
 
 <img width="303" height="470" alt="Screenshot 2025-09-04 at 5 16 26 AM" src="https://github.com/user-attachments/assets/76ca46ff-9bb9-486e-b5ca-00dd9752472f" />
 
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 13 26 AM" src="https://github.com/user-attachments/assets/e4792c96-0855-4495-ab54-521f9d0a58b5" />
 
 
 
