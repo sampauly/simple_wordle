@@ -33,12 +33,13 @@ python3 wordle_app.py
 ```
 
 ## More Images 
-<img width="402" height="637" alt="Screenshot 2025-09-04 at 5 01 58 AM" src="https://github.com/user-attachments/assets/b5672ecd-76ac-4062-9812-a7fbfb2d8ec5" /> 
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 01 58 AM" src="https://github.com/user-attachments/assets/b5672ecd-76ac-4062-9812-a7fbfb2d8ec5" /> 
 
-<img width="404" height="629" alt="Screenshot 2025-09-04 at 5 15 47 AM" src="https://github.com/user-attachments/assets/49025aaa-d7d7-42d0-be6d-fa82b41164ed" />
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 22 21 AM" src="https://github.com/user-attachments/assets/32f864a3-a4cb-4d83-9528-7bf2070706f4" />
 
-<img width="404" height="629" alt="Screenshot 2025-09-04 at 5 16 26 AM" src="https://github.com/user-attachments/assets/76ca46ff-9bb9-486e-b5ca-00dd9752472f" />
+<img width="303" height="470" alt="Screenshot 2025-09-04 at 5 16 26 AM" src="https://github.com/user-attachments/assets/76ca46ff-9bb9-486e-b5ca-00dd9752472f" />
 
-<img width="404" height="629" alt="Screenshot 2025-09-04 at 5 22 21 AM" src="https://github.com/user-attachments/assets/32f864a3-a4cb-4d83-9528-7bf2070706f4" />
+
+
 
 
